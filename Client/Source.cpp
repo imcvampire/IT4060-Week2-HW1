@@ -105,21 +105,21 @@ int main(int argc, char* argv[])
 	}
 	else if (ret1 > 0 || ret2 > 0)
 	{
-		if (strcmp(buffer1, MY_ERROR) == 0)
-		{
-			cerr << "Error: Your request contains none alphabetic characters or numbers!" << endl;
-
-			return 1;
-		}
-
 		buffer1[ret1] = 0;
 		buffer2[ret2] = 0;
 
-		cout
-			<< "Numbers: " << buffer1 
-			<< "\n"
-			<< "Characters: " << buffer2
-			<< endl;
+		if (strcmp(buffer1, MY_ERROR) == 0)
+		{
+			cerr << "Error: Your request contains none alphabetic characters or numbers!" << endl;
+		}
+		else
+		{
+			cout
+				<< "Numbers: " << buffer1
+				<< "\n"
+				<< "Characters: " << buffer2
+				<< endl;
+		}
 	}
 
 	shutdown(client, SD_SEND);

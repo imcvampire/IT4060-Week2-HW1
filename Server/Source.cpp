@@ -115,8 +115,16 @@ int main(int argc, char* argv[])
 			}
 			else
 			{
+				// FIXME: Hotfix for case: request doesnt contains number
+				if (result_int.find_first_not_of(' ') == string::npos)
+				{
+					result_int = " ";
+				}
+
 				const char *result_int_char = result_int.c_str();
 				const char *result_char_char = result_char.c_str();
+
+				if (strlen(result_int_char) == 0) result_int_char = " ";
 
 				ret1 = send(connect_socket, result_int_char, strlen(result_int_char), 0);
 				ret2 = send(connect_socket, result_char_char, strlen(result_char_char), 0);
@@ -134,11 +142,13 @@ int main(int argc, char* argv[])
 			shutdown(connect_socket, SD_SEND);
 			closesocket(connect_socket);
 		}
-
-		closesocket(listen_socket);
-
-		WSACleanup();
-
-		return 0;
 	}
+
+	cout << "Bye!" << endl;
+
+	closesocket(listen_socket);
+
+	WSACleanup();
+
+	return 0;
 }
