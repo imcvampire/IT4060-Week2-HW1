@@ -138,10 +138,10 @@ int main(int argc, char* argv[])
 			{
 				cerr << "Error: " << WSAGetLastError() << endl;
 			}
-
-			shutdown(connect_socket, SD_SEND);
-			closesocket(connect_socket);
 		}
+
+		shutdown(connect_socket, SD_SEND);
+		closesocket(connect_socket);
 	}
 
 	cout << "Bye!" << endl;
